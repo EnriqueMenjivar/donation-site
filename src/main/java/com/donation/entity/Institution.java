@@ -13,6 +13,10 @@ public class Institution {
     @Column(length = 100)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
+
     public Institution() {
     }
 
@@ -30,5 +34,13 @@ public class Institution {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

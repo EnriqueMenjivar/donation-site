@@ -1,28 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" layout:decorate="~{layouts/layout}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.rtl.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-reboot.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-reboot.rtl.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-utilities.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-utilities.rtl.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap.rtl.min.css}">
-
+    <title>Donations</title>
 </head>
-<body>
-    <h1 class="bg-primary" id="test">My donations: [[${donations}]]</h1>
 
-    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{/js/bootstrap.esm.min.js}"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<body>
+    <ol class="breadcrumb float-sm-right" layout:fragment="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+        <li class="breadcrumb-item active">Donations</li>
+    </ol>
+
+    <div layout:fragment="content">
+        <h1 class="bg-primary" id="test">My donations: [[${donations}]]</h1>
+    </div>
 </body>
+
 </html>
