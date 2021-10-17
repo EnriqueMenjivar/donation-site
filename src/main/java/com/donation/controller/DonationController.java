@@ -62,13 +62,17 @@ public class DonationController {
     @PostMapping("/store")
     public String store(@Valid @ModelAttribute("newDonation") Donation donation, BindingResult results, RedirectAttributes redirAttrs) {
 
+        if(donation.getInstitution().getId() == null) {
+            redirAttrs.addFlashAttribute("message", "Please select a valid institution");
+            return "redirect:/donations/create";
+        }
         //If there are errors
         if (results.hasErrors()) {
             redirAttrs.addFlashAttribute("errors", results.getAllErrors());
             return "redirect:/donations/create";
         }
 
-        //If user has already made donate to selected country
+        //If user has already donated to selected country
         Institution institution = institutionService.findById(donation.getInstitution().getId());
         Donation existsDonation = donationService.existsDonation(getLoggedUser().getIdDocument(), institution.getCountry().getId(), new Date());
         if (existsDonation != null) {
