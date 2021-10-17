@@ -10,7 +10,7 @@ $('#country').on('change', function () {
     var html = '';
 
     $('#institutions').html("<option> Selected country does not have institutions </option>");
-    $.get(`/api/country/${idCountry}/institutions`, function (data) {
+    $.get(`/api/countries/${idCountry}/institutions`, function (data) {
         if (data.length > 0) {
             data.forEach(institution => {
                 html += `<option value="${institution.id}">${institution.name}</option>`;

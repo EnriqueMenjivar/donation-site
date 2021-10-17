@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-public class DataRestController {
+@RequestMapping("/api/countries")
+public class CountryRestController {
 
     @Autowired
     private InstitutionService institutionService;
@@ -25,30 +25,11 @@ public class DataRestController {
     @Autowired
     private CountryService countryService;
 
-    @Autowired
-    private UserService userService;
-
-    @GetMapping("/user/{email}/exists-email")
-    public Boolean existsByEmail(@PathVariable("email") String email) {
-        return userService.existsByEmail(email);
-    }
-
-    @GetMapping("/user/{id}/exists-id")
-    public Boolean existsByIdDocument(@PathVariable("id") Long id) {
-        return userService.existsByIdDocument(id);
-    }
-
-    @GetMapping("/country/{id}/institutions")
+    @GetMapping("/{id}/institutions")
     public List<Institution> findByCountry(@PathVariable Long id) {
         Country country = countryService.findById(id);
 
         return institutionService.findByCountry(country);
     }
 
-    @GetMapping("/user/{id}/donations")
-    public UserDonationDto getDonations(@PathVariable("id") Long id) {
-        User user = userService.findByIdDocument(id);
-
-        return UserDonationDto.entityToDto(user);
-    }
 }

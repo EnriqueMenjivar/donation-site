@@ -27,7 +27,7 @@ $('[data-pass]').on('keyup', function () {
 $('#email').keyup(function(){
     var email = $(this).val();
 
-    $.get(`/api/user/${email}/exists-email`, function(res){
+    $.get(`/api/users/${email}/exists-email`, function(res){
         if(res){
             $('#errorMessage').text('This email is already taken.');
             $('#errorMessage').show();
@@ -43,7 +43,7 @@ $('#email').keyup(function(){
 $('#idDocument').keyup(function(){
     var id = $(this).val();
 
-    $.get(`/api/user/${id}/exists-id`, function(res){
+    $.get(`/api/users/${id}/exists-id`, function(res){
         if(res){
             $('#errorMessage').text('This ID Document is already taken.');
             $('#errorMessage').show();
