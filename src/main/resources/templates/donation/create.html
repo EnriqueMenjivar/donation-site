@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" layout:decorate="~{layouts/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Make Donation</title>
+
+    <!-- Select2 -->
+    <link rel="stylesheet" th:href="@{/css/select2/select2.min.css}">
+    <link rel="stylesheet" th:href="@{/css/select2/select2-bootstrap4.min.css}">
+
+</head>
+
+<body>
+    <ol class="breadcrumb float-sm-right" layout:fragment="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/donations}">Donations</a></li>
+        <li class="breadcrumb-item active">Make donation</li>
+    </ol>
+
+    <div layout:fragment="content">
+        <div class="d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mx-auto pt-3">
+                        <div class="card">
+                            <div class="card-header">
+                                Make Donation
+                            </div>
+                            <form method="POST" th:action="@{/donations/store}" th:object="${newDonation}">
+                                <div class="card-body">
+                                    <div class="alert alert-warning" th:if="${message}">[[ ${message} ]]</div>
+                                    <ul th:if="${!#lists.isEmpty(errors)}" class="alert alert-danger" role="alert">
+                                        <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+                                    </ul>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Amount</label>
+                                            <input th:field="*{donationAmount}" type="number" class="form-control" placeholder="0.00" min="0" required>
+                                        </div>
+                                        <div class="col">
+                                            <label>Credit Card Number</label>
+                                            <input th:field="*{creditCardNumber}" type="text" class="form-control" placeholder="Credit card number" required>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <label for="country">Select a Country</label>
+                                            <select id="country" class="form-control select2bs4" style="width: 100%;" required>
+                                                <th:block th:if="${!#lists.isEmpty(countries)}"
+                                                    th:each="country : ${countries}">
+                                                    <option th:value="${country.id}" th:text="${country.name}">
+                                                    </option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <label for="institution">Select an institution</label>
+                                            <select th:field="*{institution.id}" id="institutions" class="form-control select2bs4" style="width: 100%;" required>
+                                                <th:block th:if="${!#lists.isEmpty(institutions)}"
+                                                    th:each="institution : ${institutions}">
+                                                    <option th:value="${institution.id}" th:text="${institution.name}">
+                                                    </option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer mt-4">
+                                    <a th:href="@{/donations}" type="submit"
+                                        class="btn btn-sm btn-secondary mx-2">Cancel</a>
+                                    <button type="submit" class="btn btn-sm btn-primary">Make Donation</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<section layout:fragment="scripts">
+    <script th:src="@{/js/donation.js}"></script>
+    <script th:src="@{/js/select2/select2.full.min.js}"></script>
+</section>
+
+</html>

@@ -12,7 +12,22 @@ public class UserService {
     private UserRepository userRepository;
 
     public User save(User user) {
-
         return userRepository.save(user);
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public User findByIdDocument(Long id) {
+        return userRepository.findByIdDocument(id);
+    }
+
+    public Boolean existsByIdDocument(Long idDocument) {
+        return userRepository.existsByIdDocument(idDocument);
+    }
+
+    public Boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 }

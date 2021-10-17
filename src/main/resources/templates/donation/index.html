@@ -7,6 +7,9 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Donations</title>
+
+    <link rel="stylesheet" th:href="@{/css/datatables/dataTables.bootstrap4.min.css}">
+	<link rel="stylesheet" th:href="@{/css/datatables/buttons.bootstrap4.min.css}">
 </head>
 
 <body>
@@ -16,8 +19,55 @@
     </ol>
 
     <div layout:fragment="content">
-        <h1 class="bg-primary" id="test">My donations: [[${donations}]]</h1>
+        <div class="col-md-8 offset-2">
+            <div class="card">
+                <div class="card-header pl-0 pr-0">
+                    <a class="btn btn-sm btn-primary pull-right" th:href="@{/donations/create}">
+                        <i class="fa fa-plus-circle mr-1 text-white"></i>
+                        <span class="text-white">Make Donation</span>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="text-center alert alert-warning" th:if="${#lists.isEmpty(donations)}">You have not made donations yet.</div>
+                    <table id="bootstrap-data-table-export" class="table table-bordered table-striped">
+                        <div th:if="${!#lists.isEmpty(donations)}">
+                            <thead>
+                                <tr>
+                                    <th>Amount</th>
+                                    <th>Credit Card</th>
+                                    <th>Country</th>
+                                    <th>Institution</th>
+                                    <th>Donation date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="donation: ${donations}">
+                                    <td> [[ ${donation.donationAmount} ]] </td>
+                                    <td> [[ ${donation.creditCardNumber} ]] </td>
+                                    <td> [[ ${donation.institution.country.name} ]] </td>
+                                    <td> [[ ${donation.institution.name} ]] </td>
+                                    <td> [[ ${#dates.format(donation.donationDate, 'dd-MMM-yyyy')} ]] </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Amount</th>
+                                    <th>Credit Card</th>
+                                    <th>Country</th>
+                                    <th>Institution</th>
+                                    <th>Donation date</th>
+                                </tr>
+                            </tfoot>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/js/datatables/dataTables.bootstrap4.min.js}"></script>
+    <script th:src="@{/js/datatables/datatables-init.js}"></script>
 </body>
 
 </html>

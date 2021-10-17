@@ -1,26 +1,41 @@
 package com.donation.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
+    @NotNull(message = "You must add your ID Document")
     private Long idDocument;
 
     @Column(length = 100)
+    @NotEmpty(message = "You must add your last name")
     private String surname;
 
     @Column(length = 100)
+    @NotEmpty(message = "You must add your first name")
     private String name;
 
-    @Column(length = 100)
+    @Column(length = 100, unique = true)
+    @NotEmpty(message = "You must add your email")
+    @Email(message = "Must be a well-formed email address")
     private String email;
+
+    @NotEmpty(message = "You must add your password")
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Donation> donations = new ArrayList<>();
 
     public User(){}
 
@@ -62,5 +77,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(List<Donation> donations) {
+        this.donations = donations;
     }
 }

@@ -17,7 +17,7 @@ public class Visit {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private Date date = new Date();
 
     public Visit(){}
 

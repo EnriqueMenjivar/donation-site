@@ -1,16 +1,48 @@
 <!doctype html>
 <html lang="en" layout:decorate="~{layouts/layout}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Donations</title>
 </head>
+
 <body>
 
     <div layout:fragment="content">
-        
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="display-4">Wolcome to Donation Site</h1>
+                <p class="lead">This is a site where you can help to institutions of different countries :)</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header"><h5 class="text-center">Visitors</h5></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col"><strong>Total: </strong> [[ ${totalVisitors} ]]</div>
+                            <div class="col"><strong>Today: </strong> [[ ${todayVisitors} ]]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="col-md-8 mx-auto pt-3 text-center">
+                <img th:src="@{/img/donation.jpg}" alt="">
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>

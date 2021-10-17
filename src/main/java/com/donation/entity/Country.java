@@ -3,7 +3,7 @@ package com.donation.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "contries")
+@Table(name = "countries")
 public class Country {
 
     @Id

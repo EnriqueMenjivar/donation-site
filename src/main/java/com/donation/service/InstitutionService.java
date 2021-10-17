@@ -15,7 +15,13 @@ public class InstitutionService {
     private InstitutionRepository institutionRepository;
 
     public List<Institution> findByCountry(Country country) {
-
         return institutionRepository.findByCountry(country);
+    }
+
+    public List<Institution> findAll() {
+        return institutionRepository.findAll();
+    }
+    public Institution findById(Long id) {
+        return institutionRepository.findById(id).orElse(null);
     }
 }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Donation site - Login</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+
+<body class="h-100">
+    <div class="authincation h-100">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-3">
+                    <div class="col-xl-12">
+                        <div class="alert alert-danger" th:if="${message}">[[ ${message} ]]</div>
+                        <ul th:if="${!#lists.isEmpty(errors)}" class="alert alert-danger" role="alert">
+                            <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+                        </ul>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-center">Sign in - Donation site</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="auth-form">
+                                    <div th:if="${error != null}" class="alert alert-danger mt-2" role="alert">Email
+                                        and/or password you entered do not match our records.</div>
+                                    <div th:if="${logout != null}" class="alert alert-info text-center mt-2"
+                                        role="alert">Good Bye</div>
+                                    <form class="user" th:action="@{/login-check}" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                        <div class="form-group mt-3">
+                                            <label><strong>Email</strong></label>
+                                            <input type="text" class="form-control" name="username" id="usernameId">
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label><strong>Password</strong></label>
+                                            <input type="password" class="form-control" name="password" id="passwordId">
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                        </div>
+                                    </form>
+                                    <div class="text-center mt-3">
+                                        <p>Not registered? <a id="btnRegister" class="text-primary" href="#">Create
+                                                Account</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Modal -->
+<div class="modal fade" id="storeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Sign up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" th:action="@{/signup}" th:object="${user}">
+                <div class="modal-body">
+                    <div class="alert alert-danger" id="errorMessage" style="display: none;"></div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label>ID Document</label>
+                            <input th:field="*{idDocument}" id="idDocument" type="number" class="form-control"
+                                placeholder="Type your ID Document" required>
+                        </div>
+                        <div class="col">
+                            <label>Email</label>
+                            <input th:field="*{email}" id="email" type="email" class="form-control" placeholder="Type your email" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col">
+                            <label>First Name</label>
+                            <input th:field="*{name}" type="text" class="form-control"
+                                placeholder="Type your first name" required>
+                        </div>
+                        <div class="col">
+                            <label>Last Name</label>
+                            <input th:field="*{surname}" type="text" class="form-control"
+                                placeholder="Typr your last name" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col">
+                            <label for="password">Password</label>
+                            <input th:field="*{password}" data-pass name="password" type="password" class="form-control"
+                                id="password" placeholder="Password" required>
+                        </div>
+                        <div class="col">
+                            <label for="confirmPass">Password Confirm</label>
+                            <input name="confirmPass" data-pass type="password" class="form-control"
+                                id="passwordConfirm" placeholder="Password confirm" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btnRegistrar">Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/js/user_validation.js}"></script>
+
+</html>
