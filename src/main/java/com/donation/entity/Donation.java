@@ -17,22 +17,20 @@ public class Donation {
     private Long id;
 
     @NotNull(message = "You must add the amount to donate.")
+    @Column(nullable = false)
     private Float donationAmount;
-
-    @Column(length = 50)
-    @NotEmpty(message = "You must add the credit card number.")
-    private String creditCardNumber;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private Date donationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "institution_id")
+    @JoinColumn(name = "institution_id", nullable = false)
     @NotNull(message = "You must select the institution to donate.")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Institution institution;
@@ -53,14 +51,6 @@ public class Donation {
 
     public void setDonationAmount(Float donationAmount) {
         this.donationAmount = donationAmount;
-    }
-
-    public String getCreditCardNumber() {
-        return creditCardNumber;
-    }
-
-    public void setCreditCardNumber(String creditCardNumber) {
-        this.creditCardNumber = creditCardNumber;
     }
 
     public Date getDonationDate() {

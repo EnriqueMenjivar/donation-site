@@ -117,7 +117,13 @@ insert into users (id_document, name, surname, email, password) values (1, 'Fair
 insert into users (id_document, name, surname, email, password) values (2, 'Tasha', 'Morfey', 'tasha@gmail.com', '$2a$10$rPGB4XJ/9Ml7t8qiaD.RDOzIn1OEyUh58C7iSebsg/9T1aFp1mnw2');
 insert into users (id_document, name, surname, email, password) values (3, 'Lorenzo', 'Ungerechts', 'lerenzo@gmail.com', '$2a$10$rPGB4XJ/9Ml7t8qiaD.RDOzIn1OEyUh58C7iSebsg/9T1aFp1mnw2');
 
+-- CREDIT_CARDS TABLE
+insert into credit_cards (id, balance, name, number, pin, user_id) values (1, 10000, 'Bank Company', '3456789834657854', '1234', 1);
+insert into credit_cards (id, balance, name, number, pin, user_id) values (2, 10000, 'Coop Company', '3948398287238733', '1234', 1);
+insert into credit_cards (id, balance, name, number, pin, user_id) values (3, 10000, 'Bank Company', '9586982389238912', '1234', 2);
+insert into credit_cards (id, balance, name, number, pin, user_id) values (4, 10000, 'Bank Company', '5862839812781278', '1234', 3);
+
 -- VISITS TABLE
 insert into visits (id, date, views) values (1, '2021-10-16', 43);
 insert into visits (id, date, views) values (2, '2021-10-12', 63);
-insert into visits (id, date, views) values (3, '2021-10-10', 37);
+insert into visits (id, date, views) values (3, '2021-10-10', 62);

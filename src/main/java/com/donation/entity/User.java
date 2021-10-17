@@ -17,20 +17,21 @@ public class User {
     @NotNull(message = "You must add your ID Document")
     private Long idDocument;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     @NotEmpty(message = "You must add your last name")
     private String surname;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     @NotEmpty(message = "You must add your first name")
     private String name;
 
-    @Column(length = 100, unique = true)
+    @Column(length = 100, unique = true, nullable = false)
     @NotEmpty(message = "You must add your email")
     @Email(message = "Must be a well-formed email address")
     private String email;
 
     @NotEmpty(message = "You must add your password")
+    @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user")

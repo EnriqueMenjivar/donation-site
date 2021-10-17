@@ -12,11 +12,11 @@ public class Institution {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "country_id", nullable = false)
     @JsonIgnore
     private Country country;
 
